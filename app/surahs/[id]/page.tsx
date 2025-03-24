@@ -1,15 +1,19 @@
-import SurahPageClient from "./SurahPageClient/page";
+import SurahPageClient from "./SurahPageClient";
 
 async function getSurahData(id: string) {
   const [surahRes, translationRes, audioRes] = await Promise.all([
     fetch(`https://api.alquran.cloud/v1/surah/${id}`),
     fetch(`https://api.alquran.cloud/v1/surah/${id}/en.asad`),
-    fetch(`https://api.quran.com/api/v4/verses/by_chapter/${id}?language=en&words=true&audio=7`)
+    fetch(`https://api.quran.com/api/v4/verses/by_chapter/${id}?language=en&words=true&audio=7`),
   ]);
 
   const surahData = await surahRes.json();
   const translationData = await translationRes.json();
   const audioData = await audioRes.json();
+
+  console.log("Surah Data:", surahData);
+  console.log("Translation Data:", translationData);
+  console.log("Audio Data:", audioData);
 
   const verseAudios = audioData.verses.map((verse: any) => ({
     numberInSurah: verse.verse_number,
@@ -25,6 +29,10 @@ async function getSurahData(id: string) {
 
 export default async function SurahPage({ params }: { params: { id: string } }) {
   const { surah, translation, verseAudios } = await getSurahData(params.id);
+
+  if (!surah || !translation) {
+    return <div>Failed to load Surah data. Please try again later.</div>;
+  }
 
   return <SurahPageClient surah={surah} translation={translation} />;
 }

@@ -16,21 +16,34 @@ export default function SurahPageClient({
   surah: any;
   translation: any;
 }) {
+  if (!surah || !translation) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-3xl font-bold mb-4">Surah Not Found</h1>
+          <p className="text-muted-foreground">
+            The requested Surah data could not be loaded. Please try again later.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   const [showTranslation, setShowTranslation] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [displayMode, setDisplayMode] = useState<'arabic' | 'arabic-with-translation'>('arabic-with-translation');
-  const [paragraphMode, setParagraphMode] = useState(false); // State for paragraph mode
-  const [isPlayingFullSurah, setIsPlayingFullSurah] = useState(false); // State to track full Surah playback
+  const [paragraphMode, setParagraphMode] = useState(false);
+  const [isPlayingFullSurah, setIsPlayingFullSurah] = useState(false);
   const { toast } = useToast();
 
   const currentAudioRef = useRef<HTMLAudioElement | null>(null);
-  const fullSurahAudioQueue = useRef<number[]>([]); // Queue to manage full Surah audio playback
+  const fullSurahAudioQueue = useRef<number[]>([]);
 
-  const totalPages = Math.ceil(surah.numberOfAyahs / VERSES_PER_PAGE);
+  const totalPages = Math.ceil(surah?.numberOfAyahs / VERSES_PER_PAGE);
   const startIndex = (currentPage - 1) * VERSES_PER_PAGE;
-  const endIndex = Math.min(startIndex + VERSES_PER_PAGE, surah.numberOfAyahs);
-  const currentVerses = surah.ayahs.slice(startIndex, endIndex);
-  const currentTranslations = translation.ayahs.slice(startIndex, endIndex);
+  const endIndex = Math.min(startIndex + VERSES_PER_PAGE, surah?.numberOfAyahs || 0);
+  const currentVerses = surah?.ayahs?.slice(startIndex, endIndex) || [];
+  const currentTranslations = translation?.ayahs?.slice(startIndex, endIndex) || [];
 
   const formatVerseKey = (surahNumber: number, ayahNumber: number) => {
     const surahStr = surahNumber.toString().padStart(3, "0");
