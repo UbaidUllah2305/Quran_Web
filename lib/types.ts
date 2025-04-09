@@ -15,15 +15,17 @@ export interface Ayah {
   audioUrl?: string;
 }
 
-export interface Bookmark {
-  surahNumber: number;
-  ayahNumber: number;
-  timestamp: string;
-  surahName: string;
-}
 
 export interface PaginationState {
   currentPage: number;
   totalPages: number;
   versesPerPage: number;
 }
+
+// lib/types.ts
+export type Bookmark = {
+  surahNumber: number;
+  ayahNumber: number;
+  surahName: string;
+  timestamp: string;
+};

@@ -8,6 +8,69 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+/* Arabic Text Styling */
+.quran-arabic {
+  font-family: 'Amiri Quran', 'KFGQPC Uthmanic Script HAFS', 'Traditional Arabic', sans-serif;
+  font-size: 1.5rem;
+  line-height: 3.5rem; /* Increased for tajweed rules */
+  text-align: right;
+  direction: rtl;
+  word-spacing: 0.2rem;
+  letter-spacing: 0;
+}
+
+/* Verse Container */
+.verse-container {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1.5rem 0;
+  margin: 0;
+}
+
+/* Verse Number Styling */
+.verse-number {
+  background-color: #f7fafc;
+  color: #2d3748;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Quranic Separators (۞ ۩ ﴿ ﴾) */
+.quran-separator {
+  color: #4299e1;
+  font-size: 1.8rem;
+  margin: 0 0.25rem;
+  vertical-align: middle;
+}
+
+/* Translation Text */
+.translation-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #4a5568;
+  line-height: 1.8;
+  margin-top: 1rem;
+  text-align: left;
+  direction: ltr;
+}
+
+/* Audio Player Controls */
+.audio-control {
+  background-color: #ebf8ff;
+  color: #3182ce;
+  border-radius: 50%;
+  padding: 0.5rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .quran-arabic {
+    font-size: 1.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;

@@ -1,6 +1,7 @@
+// components/navbar.tsx
 "use client";
 
-import { Book, Menu, Moon, Sun } from "lucide-react";
+import { Book, Bookmark, Menu, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import {
@@ -11,9 +12,33 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
+  const [bookmarkCount, setBookmarkCount] = useState(0);
+
+  useEffect(() => {
+    const updateBookmarkCount = () => {
+      const bookmarks = localStorage.getItem('quran-bookmarks');
+      setBookmarkCount(bookmarks ? JSON.parse(bookmarks).length : 0);
+    };
+
+    // Initial count
+    updateBookmarkCount();
+
+    // Listen for storage changes within same tab
+    const handleStorageChange = () => updateBookmarkCount();
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Also listen for custom events from same tab
+    window.addEventListener('bookmark-updated', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('bookmark-updated', handleStorageChange);
+    };
+  }, []);
 
   return (
     <nav className="border-b">
@@ -41,7 +66,14 @@ export default function Navbar() {
               </Link>
               <Link href="/bookmarks">
                 <Button variant="ghost" className="w-full justify-start">
-                  Bookmarks
+                  <div className="flex items-center gap-2">
+                    Bookmarks
+                    {bookmarkCount > 0 && (
+                      <span className="bg-primary text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                        {bookmarkCount}
+                      </span>
+                    )}
+                  </div>
                 </Button>
               </Link>
             </div>
@@ -61,7 +93,16 @@ export default function Navbar() {
             <Button variant="ghost">Surahs</Button>
           </Link>
           <Link href="/bookmarks">
-            <Button variant="ghost">Bookmarks</Button>
+            <Button variant="ghost">
+              <div className="flex items-center gap-2">
+                Bookmarks
+                {bookmarkCount > 0 && (
+                  <span className="bg-primary text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                    {bookmarkCount}
+                  </span>
+                )}
+              </div>
+            </Button>
           </Link>
         </div>
 

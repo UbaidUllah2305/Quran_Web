@@ -15,7 +15,7 @@ export default async function SurahsPage() {
       <h1 className="text-3xl font-bold mb-6">Surahs of the Quran</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {surahs.map((surah: any) => (
-          <Link href={`/surahs/${surah.number}`} key={surah.number}>
+          <Link href={`/surahs_translation/${surah.number}`} key={surah.number}>
             <Card className="p-4 hover:bg-muted transition-colors cursor-pointer">
               <div className="flex items-start justify-between">
                 <div>

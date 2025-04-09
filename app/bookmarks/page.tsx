@@ -25,7 +25,8 @@ export default function BookmarksPage() {
     );
     setBookmarks(newBookmarks);
     localStorage.setItem('quran-bookmarks', JSON.stringify(newBookmarks));
-    
+    window.dispatchEvent(new Event('storage'));
+
     toast({
       title: "Bookmark removed",
       description: "The bookmark has been removed successfully",
@@ -68,7 +69,13 @@ export default function BookmarksPage() {
                 </p>
               </div>
               <div className="flex gap-2">
-                <Link href={`/surahs/${bookmark.surahNumber}`}>
+                <Link
+                  href={{
+                    pathname: `/surahs_translation/${bookmark.surahNumber}`,
+                    query: { verse: bookmark.ayahNumber }
+                  }}
+                  scroll={false}
+                >
                   <Button variant="outline">Read</Button>
                 </Link>
                 <Button

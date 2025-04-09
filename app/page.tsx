@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Book, BookMarked, Moon } from "lucide-react";
+import { Book, BookMarked, Bookmark, Moon, ListOrdered, Languages } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="max-w-3xl mx-auto text-center">
+      <div className="max-w-4xl mx-auto text-center">
         <h1 className="text-4xl font-bold mb-6">
           Welcome to Digital Quran
         </h1>
@@ -15,56 +15,89 @@ export default function Home() {
         </p>
 
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <Card>
-            <CardContent className="pt-6">
-              <div className="text-center">
-                <Book className="w-12 h-12 mx-auto mb-4" />
-                <h2 className="text-xl font-semibold mb-2">Read Surahs</h2>
+          <Card className="h-full flex flex-col">
+            <CardContent className="pt-6 flex-grow flex flex-col">
+              <div className="text-center flex-grow">
+                <BookMarked className="w-12 h-12 mx-auto mb-4 text-primary" />
+                <h2 className="text-xl font-semibold mb-2">Complete Quran</h2>
                 <p className="text-muted-foreground mb-4">
-                  Access all 114 surahs with translations
+                  Access the entire Holy Quran
                 </p>
-                <Link href="/surahs">
-                  <Button>Browse Surahs</Button>
-                </Link>
               </div>
+              <Link href="/" className="mt-auto">
+                <Button className="w-full">Read Quran</Button>
+              </Link>
             </CardContent>
           </Card>
 
-          <Card>
-            <CardContent className="pt-6">
-              <div className="text-center">
-                <BookMarked className="w-12 h-12 mx-auto mb-4" />
+          <Card className="h-full flex flex-col">
+            <CardContent className="pt-6 flex-grow flex flex-col">
+              <div className="text-center flex-grow">
+                <ListOrdered className="w-12 h-12 mx-auto mb-4 text-primary" />
+                <h2 className="text-xl font-semibold mb-2">Surahs</h2>
+                <p className="text-muted-foreground mb-4">
+                  Explore all 114 Surahs
+                </p>
+              </div>
+              <Link href="/surahs" className="mt-auto">
+                <Button className="w-full">Browse Surahs</Button>
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card className="h-full flex flex-col">
+            <CardContent className="pt-6 flex-grow flex flex-col">
+              <div className="text-center flex-grow">
+                <Book className="w-12 h-12 mx-auto mb-4 text-primary" />
+                <h2 className="text-xl font-semibold mb-2">Paras</h2>
+                <p className="text-muted-foreground mb-4">
+                  Access all 30 Paras (Juz)
+                </p>
+              </div>
+              <Link href="/paras" className="mt-auto">
+                <Button className="w-full">Browse Paras</Button>
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card className="h-full flex flex-col">
+            <CardContent className="pt-6 flex-grow flex flex-col">
+              <div className="text-center flex-grow">
+                <Languages className="w-12 h-12 mx-auto mb-4 text-primary" />
+                <h2 className="text-xl font-semibold mb-2">Surahs with Translations</h2>
+                <p className="text-muted-foreground mb-4">
+                  Read with multiple language translations
+                </p>
+              </div>
+              <Link href="/surahs_translation" className="mt-auto">
+                <Button className="w-full">View Translations</Button>
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card className="h-full flex flex-col">
+            <CardContent className="pt-6 flex-grow flex flex-col">
+              <div className="text-center flex-grow">
+                <Bookmark className="w-12 h-12 mx-auto mb-4 text-primary" />
                 <h2 className="text-xl font-semibold mb-2">Bookmarks</h2>
                 <p className="text-muted-foreground mb-4">
                   Save and manage your reading progress
                 </p>
-                <Link href="/bookmarks">
-                  <Button>View Bookmarks</Button>
-                </Link>
               </div>
+              <Link href="/bookmarks" className="mt-auto">
+                <Button className="w-full">View Bookmarks</Button>
+              </Link>
             </CardContent>
           </Card>
 
-          <Card>
-            <CardContent className="pt-6">
-              <div className="text-center">
-                <Moon className="w-12 h-12 mx-auto mb-4" />
-                <h2 className="text-xl font-semibold mb-2">Dark Mode</h2>
-                <p className="text-muted-foreground mb-4">
-                  Comfortable reading day and night
-                </p>
-                <Button variant="outline">Toggle Theme</Button>
-              </div>
-            </CardContent>
-          </Card>
         </div>
 
         <div className="bg-muted p-8 rounded-lg">
           <h2 className="text-2xl font-semibold mb-4">About Digital Quran</h2>
           <p className="text-muted-foreground">
             This application provides a modern, accessible way to read and study the Holy Quran.
-            Features include verse-by-verse reading, translations, bookmarking, and a comfortable
-            reading experience with both light and dark modes.
+            Features include verse-by-verse reading, multiple translations, bookmarking, and
+            a comfortable reading experience with both light and dark modes.
           </p>
         </div>
       </div>
