@@ -24,7 +24,7 @@ export default function Home() {
                   Access the entire Holy Quran
                 </p>
               </div>
-              <Link href="/" className="mt-auto">
+              <Link href="/quran" className="mt-auto">
                 <Button className="w-full">Read Quran</Button>
               </Link>
             </CardContent>
