@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Book, BookMarked, Bookmark, Moon, ListOrdered, Languages } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -86,6 +87,40 @@ export default function Home() {
               </div>
               <Link href="/bookmarks" className="mt-auto">
                 <Button className="w-full">View Bookmarks</Button>
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card className="h-full flex flex-col">
+            <CardContent className="pt-6 flex-grow flex flex-col">
+              <div className="text-center flex-grow">
+                <>
+                  {/* Show in light mode */}
+                  <Image
+                    src="images/qibla_dark.png"
+                    alt="Dark Image"
+                    width={100}
+                    height={100}
+                    className="w-12 h-12 mx-auto mb-4 text-primary dark:hidden"
+                  />
+
+                  {/* Show in dark mode */}
+                  <Image
+                    src="images/qibla_light.png"
+                    alt="Light Image"
+                    width={100}
+                    height={100}
+                    className="w-12 h-12 mx-auto mb-4 text-primary hidden dark:block"
+                  />
+                </>
+
+                <h2 className="text-xl font-semibold mb-2">Qibla Direction</h2>
+                <p className="text-muted-foreground mb-4">
+                  Search for the Qibla Direction
+                </p>
+              </div>
+              <Link href="/qiblaDirection" className="mt-auto">
+                <Button className="w-full">View Direction</Button>
               </Link>
             </CardContent>
           </Card>

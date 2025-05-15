@@ -53,8 +53,11 @@
     "eslint": "8.49.0",
     "eslint-config-next": "13.5.1",
     "express": "^5.1.0",
+    "framer-motion": "^12.11.3",
+    "gsap": "^3.13.0",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.446.0",
+    "luxon": "^3.6.1",
     "mongoose": "^8.13.2",
     "next": "^15.2.5",
     "next-themes": "^0.3.0",
@@ -76,6 +79,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/luxon": "^3.6.2",
     "@types/node": "^22.13.13",
     "@types/react": "^19.0.12"
   }
