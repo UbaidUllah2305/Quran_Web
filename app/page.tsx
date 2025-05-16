@@ -125,6 +125,36 @@ export default function Home() {
             </CardContent>
           </Card>
 
+            <Card className="h-full flex flex-col">
+            <CardContent className="pt-6 flex-grow flex flex-col">
+              <div className="text-center flex-grow">
+                <Bookmark className="w-12 h-12 mx-auto mb-4 text-primary" />
+                <h2 className="text-xl font-semibold mb-2">Prayer Time</h2>
+                <p className="text-muted-foreground mb-4">
+                  See the time of prayers
+                </p>
+              </div>
+              <Link href="/prayerTime" className="mt-auto">
+                <Button className="w-full">View Prayers Time</Button>
+              </Link>
+            </CardContent>
+          </Card>
+
+            <Card className="h-full flex flex-col">
+            <CardContent className="pt-6 flex-grow flex flex-col">
+              <div className="text-center flex-grow">
+                <Bookmark className="w-12 h-12 mx-auto mb-4 text-primary" />
+                <h2 className="text-xl font-semibold mb-2">Hijri Caulator</h2>
+                <p className="text-muted-foreground mb-4">
+                  Calculate the date into Hijri
+                </p>
+              </div>
+              <Link href="/hijri" className="mt-auto">
+                <Button className="w-full">View Hijri</Button>
+              </Link>
+            </CardContent>
+          </Card>
+
         </div>
 
         <div className="bg-muted p-8 rounded-lg">

@@ -260,7 +260,7 @@ export default function SurahPageClient({
                     </p>
 
                     {/* Full Surah Play Button */}
-                    <div className="mt-4 flex justify-center gap-4">
+                    {/* <div className="mt-4 flex justify-center gap-4">
                         <Button
                             variant={isPlayingFullSurah ? "default" : "outline"}
                             onClick={playFullSurah}
@@ -273,7 +273,7 @@ export default function SurahPageClient({
                             )}
                             {isPlayingFullSurah ? "Stop Playback" : "Play Full Surah"}
                         </Button>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="mb-8 p-4 rounded-lg ">

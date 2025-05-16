@@ -1,6 +1,11 @@
+// components/PrayerTimes.tsx
+"use client";
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { DateTime } from "luxon";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface PrayerTimesProps {
   latitude: number;
@@ -54,42 +59,57 @@ export default function PrayerTimes({ latitude, longitude }: PrayerTimesProps) {
         return;
       }
     }
-    setNextPrayer("Fajr"); // Default to Fajr if all prayers passed
+    setNextPrayer("Fajr");
   }, [times]);
 
   if (loading) return (
-    <div className="p-4 text-center text-blue-600">
-      Loading Prayer Times...
-    </div>
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle>Today&apos;s Prayer Times</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {Array(5).fill(0).map((_, i) => (
+          <div key={i} className="flex justify-between">
+            <Skeleton className="h-4 w-20" />
+            <Skeleton className="h-4 w-12" />
+          </div>
+        ))}
+      </CardContent>
+    </Card>
   );
 
   if (!times) return (
-    <div className="p-4 text-center text-red-600">
-      Could not load prayer times
-    </div>
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle>Today&apos;s Prayer Times</CardTitle>
+      </CardHeader>
+      <CardContent className="text-destructive">
+        Could not load prayer times
+      </CardContent>
+    </Card>
   );
 
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden">
-      <div className="bg-blue-600 text-white p-4">
-        <h2 className="text-lg font-semibold text-center">Today&apos;s Prayer Times</h2>
-      </div>
-      <div className="divide-y divide-gray-100">
+    <Card className="w-full">
+      <CardHeader className="bg-primary/5">
+        <CardTitle className="text-center">Today&apos;s Prayer Times</CardTitle>
+      </CardHeader>
+      <CardContent className="divide-y">
         {["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"].map((prayer) => (
           <div 
             key={prayer} 
-            className={`flex justify-between p-3 ${nextPrayer === prayer ? "bg-blue-50 font-medium" : ""}`}
+            className={`flex justify-between p-3 ${nextPrayer === prayer ? "bg-primary/10 font-medium" : ""}`}
           >
-            <span className={nextPrayer === prayer ? "text-blue-600" : ""}>{prayer}</span>
-            <span className={nextPrayer === prayer ? "text-blue-600 font-semibold" : ""}>
+            <span className={nextPrayer === prayer ? "text-primary" : ""}>{prayer}</span>
+            <span className={nextPrayer === prayer ? "text-primary font-semibold" : ""}>
               {times[prayer]}
             </span>
           </div>
         ))}
-      </div>
-      <div className="p-3 bg-gray-50 text-center text-sm">
-        Next prayer: <span className="font-semibold text-blue-600">{nextPrayer}</span>
-      </div>
-    </div>
+      </CardContent>
+      <CardContent className="bg-muted/50 text-center text-sm p-3">
+        Next prayer: <span className="font-semibold text-primary">{nextPrayer}</span>
+      </CardContent>
+    </Card>
   );
 }

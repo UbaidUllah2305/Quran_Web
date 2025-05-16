@@ -1,9 +1,9 @@
-// app/qiblaDirection/page.tsx
+// app/prayerTime/page.tsx
 "use client";
 
 import { useState, useEffect } from "react";
-import Compass from "@/components/Compass";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import PrayerTimes from "@/components/PrayerTimes";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
 interface Coordinates {
@@ -39,16 +39,15 @@ export default function Home() {
     <div className="min-h-screen flex flex-col items-center py-8 px-4">
       <Card className="w-full max-w-md mb-6 text-center">
         <CardHeader>
-          <CardTitle className="text-2xl">Qibla Finder</CardTitle>
-          <CardDescription>Find your Qibla direction</CardDescription>
+          <CardTitle className="text-2xl">Prayer Timing</CardTitle>
+          <CardDescription>Check the Prayer Start and End Timing</CardDescription>
         </CardHeader>
       </Card>
 
 
       {coords ? (
         <div className="w-full max-w-md space-y-6">
-          <Compass latitude={coords.latitude} longitude={coords.longitude} />
-          {/* <PrayerTimes latitude={coords.latitude} longitude={coords.longitude} /> */}
+          <PrayerTimes latitude={coords.latitude} longitude={coords.longitude} />
         </div>
       ) : (
         <Alert variant={geoError ? "destructive" : "default"} className="max-w-md">

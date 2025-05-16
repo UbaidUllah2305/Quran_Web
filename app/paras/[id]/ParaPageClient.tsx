@@ -251,7 +251,7 @@ export default function ParaPageClient({
             Starts at {para.ayahs[0].surah.englishName} {para.ayahs[0].numberInSurah} • {para.ayahs.length} verses
           </p>
 
-          <div className="mt-4 flex justify-center gap-4">
+          {/* <div className="mt-4 flex justify-center gap-4">
             <Button
               variant={isPlayingFullPara ? "default" : "outline"}
               onClick={playFullPara}
@@ -264,7 +264,7 @@ export default function ParaPageClient({
               )}
               {isPlayingFullPara ? "Stop Playback" : "Play Full Juz"}
             </Button>
-          </div>
+          </div> */}
         </div>
 
         <div className="mb-8 p-4 rounded-lg">

@@ -1,5 +1,9 @@
+// components/HijriDate.tsx
+"use client";
+
 import { DateTime } from "luxon";
 import { useEffect, useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function HijriDate() {
   const [hijriDate, setHijriDate] = useState<string>("");
@@ -19,8 +23,10 @@ export default function HijriDate() {
   }, []);
 
   return (
-    <div className="mb-6 p-3 bg-blue-100 text-blue-800 rounded-lg text-center">
-      <span className="font-medium">Hijri Date: {hijriDate}</span>
-    </div>
+    <Card className="w-full max-w-md">
+      <CardContent className="p-3 text-center">
+        <span className="font-medium">Hijri Date: {hijriDate}</span>
+      </CardContent>
+    </Card>
   );
 }
